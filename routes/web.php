@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    $questions = Question::all()->sortByDesc('created_at');
+    return view('qa', ['questions' => $questions]);
 });
+
+Route::resource('questions', 'QuestionController')->except(['edit', 'update', 'destroy']);
+Route::resource('questions.answers', 'QuestionAnswerController')->except(['edit', 'update', 'destroy']);
