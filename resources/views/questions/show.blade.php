@@ -1,1 +1,0 @@
-<p>{{$question->question}}</p>

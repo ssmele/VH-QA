@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('questions', 'QuestionController')->except(['edit', 'update', 'destroy']);
-Route::resource('questions.answers', 'QuestionAnswerController')->except(['edit', 'update', 'destroy']);
+Route::get('/', function () {
+    $questions = Question::all()->sortByDesc('created_at');
+    return view('questions.index', ['questions' => $questions]);
+});
+
+Route::resource('questions', 'QuestionController')
+    ->except(['edit', 'update', 'destroy', 'create', 'show', 'index']);
+Route::resource('questions.answers', 'QuestionAnswerController')
+    ->except(['edit', 'update', 'destroy', 'create', 'show']);
+
