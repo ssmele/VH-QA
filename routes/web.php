@@ -2,21 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Question;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Placeholder;
 
 Route::get('/', function () {
     $questions = Question::all()->sortByDesc('created_at');
-    return view('questions.index', ['questions' => $questions]);
+    $placeholder = Placeholder::all()->random(1)->first()->placeholder;
+    return view('questions.index', ['questions' => $questions, 'placeholder_question' => $placeholder]);
 });
 
 Route::resource('questions', 'QuestionController')

@@ -10,7 +10,7 @@
                 <div class="col-8">
                     <label for="questionInput" class="sr-only">Submit a Question:</label>
                     <input type="text" class="form-control" id="questionInput"
-                           placeholder="Make this a random question!"
+                           placeholder="{{ $placeholder_question }}"
                            name="question" value="{{ old('question', request('question')) }}">
                 </div>
                 <div class="col-4">

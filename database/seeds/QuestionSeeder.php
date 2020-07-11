@@ -11,7 +11,7 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Question::class, 50)
+        factory(App\Question::class, 10)
             ->create()
             # Assign variable number of answers to each question.
             ->each(function ($question){

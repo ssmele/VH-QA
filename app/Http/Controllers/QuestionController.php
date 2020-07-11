@@ -8,16 +8,6 @@ use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $questions = Question::all()->sortByDesc('created_at');
-        return view('questions.index', ['questions' => $questions]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -43,17 +33,6 @@ class QuestionController extends Controller
         }
         Question::create($validator->valid());
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
-        return view('questions.show', ['question' => $question]);
     }
 
 }

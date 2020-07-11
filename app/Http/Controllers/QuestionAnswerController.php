@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +16,7 @@ class QuestionAnswerController extends Controller
      */
     public function index(Question $question)
     {
-        return $question->answers;
+        return view('questions.answers.index', ['question'=>$question]);
     }
 
     /**
@@ -48,15 +47,4 @@ class QuestionAnswerController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Question  $question
-     * @param  \App\Answer  $answer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question, Answer $answer)
-    {
-        return ['question'=>$question, 'answer' => $answer];
-    }
 }
