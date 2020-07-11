@@ -6,7 +6,8 @@ use App\Placeholder;
 
 Route::get('/', function () {
     $questions = Question::all()->sortByDesc('created_at');
-    $placeholder = Placeholder::all()->random(1)->first()->placeholder;
+    $randomPlaceholder = Placeholder::inRandomOrder()->first();
+    $placeholder = is_null($randomPlaceholder) ? "" : $randomPlaceholder->placeholder;
     return view('questions.index', ['questions' => $questions, 'placeholder_question' => $placeholder]);
 });
 
